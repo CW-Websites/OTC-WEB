@@ -1,0 +1,666 @@
+/* ——— OTC Anywhere — overrides on top of TNT styles —————————————————————— */
+
+/* Hero accent — OTC's logo has a red/orange map pin; use it sparingly */
+:root {
+  --otc-pin: #C8472B;
+}
+
+/* Hero title: center on app + map dashboard composition */
+.hero__ph--web img,
+.hero__ph--app img { object-fit: contain; }
+
+/* Larger logo size to accommodate horizontal "OTC ANYWHERE" wordmark */
+.nav__logo img { height: 36px; }
+
+/* ——— Channels & enforcements section (slide 2) ——————————————————————————
+   Renders as three vertical blocks: Channels, Permissions/Enforcements, Hosting */
+.platform-image {
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: clamp(40px, 6vw, 80px);
+  display: block;
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+}
+.platform-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.hosting-image {
+  width: 100%;
+  margin-top: 24px;
+  display: block;
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+}
+.hosting-image img {
+  display: block;
+  width: 75%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.platform {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: stretch;
+}
+@media (max-width: 980px) {
+  .platform { grid-template-columns: 1fr; }
+}
+
+.platform__diagram {
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 12px;
+  padding: clamp(24px, 3vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.platform__diagram .grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.platform__diagram > * { position: relative; z-index: 1; }
+
+.diag__row-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(247,245,239,0.5);
+  margin-bottom: 10px;
+}
+
+.channels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+@media (max-width: 560px) { .channels { grid-template-columns: repeat(2, 1fr); } }
+
+.channel {
+  background: rgba(247,245,239,0.04);
+  border: 1px solid rgba(247,245,239,0.12);
+  border-radius: 8px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  min-height: 80px;
+}
+.channel__name {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+.channel__sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: rgba(247,245,239,0.55);
+  line-height: 1.35;
+}
+
+/* OTC service core — primary + secondary service blocks */
+.cores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.core {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.core--secondary { background: #6FA3D8; }
+.core__name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.core__sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+}
+
+.locks {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 560px) { .locks { grid-template-columns: 1fr; } }
+.lock {
+  background: rgba(247,245,239,0.04);
+  border: 1px solid rgba(247,245,239,0.12);
+  border-radius: 8px;
+  padding: 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lock__sys {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--paper);
+}
+.lock__loc {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247,245,239,0.55);
+}
+
+.diag__connector {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(247,245,239,0.18), transparent);
+  margin: 4px 0;
+}
+
+/* Enforcements / permissions list */
+.enforce {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.enforce__head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+.enforce__head h3 {
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.enforce__head .num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+.enforce__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 16px;
+}
+@media (max-width: 560px) { .enforce__grid { grid-template-columns: 1fr; } }
+.enforce__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.4;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.enforce__item::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  margin-top: 8px;
+  background: var(--accent);
+  flex-shrink: 0;
+  transform: rotate(45deg);
+}
+
+/* ——— Hosting (slide 3) — architecture diagram + supports ———————————— */
+.hosting {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 4vw, 64px);
+  align-items: stretch;
+}
+@media (max-width: 980px) {
+  .hosting { grid-template-columns: 1fr; }
+}
+
+.hosting__diag {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: clamp(24px, 3vw, 36px);
+  position: relative;
+}
+.hosting__cloud {
+  position: relative;
+  background: #fff;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 200px / 80px;
+  padding: 36px 28px 28px;
+  margin-top: 8px;
+}
+.hosting__cloud-label {
+  position: absolute;
+  top: -10px; left: 24px;
+  background: var(--paper-2);
+  padding: 0 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.hosting__service-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.hosting__svc {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.hosting__svc--alt { background: #6FA3D8; }
+.hosting__svc .badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.18);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+.hosting__fw-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 8px 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.hosting__fw-row::before,
+.hosting__fw-row::after {
+  content: '';
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--line-strong);
+}
+.hosting__customer-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+@media (max-width: 560px) { .hosting__customer-row { grid-template-columns: 1fr 1fr; } }
+.hosting__node {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 12px;
+  text-align: center;
+}
+.hosting__node-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.hosting__node-sub {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-top: 4px;
+}
+
+.hosting__supports {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: center;
+}
+.support-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.support-card h4 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+.support-card .lede {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.support-card ul {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.support-card li {
+  font-size: 13px;
+  color: var(--mute);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.4;
+}
+.support-card li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.55em;
+  width: 5px; height: 5px;
+  border: 1.25px solid var(--accent);
+  transform: rotate(45deg);
+}
+
+/* ——— Deployment cases (slides 4-6) — adapt the case styles ————————————— */
+.case__model-logo {
+  height: clamp(34px, 3.6vw, 48px);
+  width: auto;
+  display: block;
+}
+.case__target-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 14px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--paper);
+  background: var(--ink);
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: background .2s, color .2s, transform .15s;
+}
+.case__target-link:hover {
+  background: var(--accent);
+  color: var(--accent-ink, #fff);
+}
+.case__target-link:active { transform: translateY(1px); }
+.case__target-link svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+.case__store-badge {
+  display: inline-block;
+  margin-top: 18px;
+  height: 44px;
+  width: auto;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 160ms ease, opacity 160ms ease;
+  line-height: 0;
+}
+.case__store-badge:hover { transform: translateY(-1px); opacity: 0.9; }
+.case__store-badge img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+/* Stacked phone composition for case 02 (Track/Trace) — two phones overlaid */
+.case__media--stack {
+  position: relative;
+  background: transparent;
+  border: 0;
+  overflow: visible;
+  padding: 16px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 440px;
+}
+.case__media--stack img {
+  position: absolute;
+  max-height: 380px;
+  width: auto;
+  height: 100%;
+  filter: drop-shadow(0 18px 32px rgba(11,30,63,0.22));
+}
+.case__media-back {
+  top: 0;
+  left: 50%;
+  transform: translateX(-78%);
+  z-index: 1;
+}
+.case__media-front {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-22%);
+  z-index: 2;
+}
+.case--otc .case__body {
+  grid-template-columns: 320px 280px 1fr;
+}
+.case--otc .case__media { order: 0; }
+.case--otc .case__id    { order: 1; }
+.case--otc .case__col   { order: 2; }
+@media (max-width: 1100px) {
+  .case--otc .case__body { grid-template-columns: 1fr; }
+  .case--otc .case__media,
+  .case--otc .case__id,
+  .case--otc .case__col { order: initial; }
+}
+.case__media {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  overflow: hidden;
+}
+.case__media img {
+  max-width: 100%;
+  max-height: 380px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 18px 32px rgba(11,30,63,0.22));
+}
+
+/* Hero adjustments — OTC uses TNT-style two-image composition (web + app overlay),
+   pegged to the upper-right so it sits beside the kicker line, not below it */
+.hero--otc .hero__inner {
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+.hero--otc .hero__visual {
+  aspect-ratio: 5 / 4;
+  margin-top: 0;
+  align-self: start;
+  justify-self: end;
+}
+
+/* App store badges in the hero CTA row */
+.hero__stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 4px;
+}
+.hero__store-badge {
+  display: inline-block;
+  height: 44px;
+  width: auto;
+  flex: 0 0 auto;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 160ms ease, opacity 160ms ease;
+  line-height: 0;
+}
+.hero__store-badge:hover { transform: translateY(-1px); opacity: 0.9; }
+.hero__store-badge img {
+  height: 44px;
+  width: auto;
+  display: block;
+  max-width: none;
+}
+
+/* Two-image hero composition — Web dashboard with mobile app overlay */
+.hero--otc .hero__ph--web {
+  top: 0;
+  right: 0;
+  width: 92%;
+  height: 82%;
+  z-index: 1;
+}
+.hero--otc .hero__ph--web img {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+.hero--otc .hero__ph--app {
+  left: -5%;
+  bottom: 0;
+  width: 30.6%;
+  height: 74.7%;
+  z-index: 2;
+}
+.hero--otc .hero__ph--app img {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+/* Stat strip variant for OTC volumes (slide 1) */
+.otc-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+@media (max-width: 880px) { .otc-stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .otc-stats { grid-template-columns: 1fr; } }
+.otc-stat {
+  background: var(--paper);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.otc-stat__num {
+  font-size: clamp(32px, 3.8vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  line-height: 1;
+}
+.otc-stat__num .accent { color: var(--accent); }
+.otc-stat__lbl {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+/* Section head accents — operate green tint */
+.section-head__title .pin { color: var(--otc-pin); font-weight: 500; }
+
+/* Footer — OTC-specific bigger wordmark */
+.otc-footer .tnt-footer__wordmark {
+  font-size: clamp(48px, 14vw, 220px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+}
+.otc-footer .tnt-footer__wordmark .accent { color: var(--accent-light); font-weight: 800; }
+
+/* Lock systems brand row (slide 1) */
+.lock-brands {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 64px);
+  padding: 32px 0;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-top: 56px;
+}
+.lock-brand {
+  font-family: var(--sans);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  opacity: 0.85;
+}
+.lock-brand .sep {
+  color: var(--mute-2);
+  margin: 0 clamp(20px, 3vw, 48px);
+  font-weight: 300;
+}
+.lock-brands__label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+  width: 100%;
+  text-align: center;
+  margin-bottom: 8px;
+}
