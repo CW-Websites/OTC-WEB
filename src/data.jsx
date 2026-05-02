@@ -12,8 +12,8 @@ const OTC_SCOPE = ['SECURED', 'ON-DEMAND', 'ENTERPRISE MANAGED'];
 
 const OTC_HERO_BULLETS = [
   { label: 'Coverage',   val: 'DormaKaba · Stanley S&G · Intergard' },
-  { label: 'Automation', val: '95%+ of routine ATM / Vault open · close · reassign' },
-  { label: 'Operations', val: '24×7×365 protected & supported · No procedure changes' },
+  { label: 'Automation', val: '95%+ of ATM / Vault Open · Close · Reassign' },
+  { label: 'Operations', val: '24×7×365 protected & supported\n· No procedure changes' },
 ];
 
 const OTC_HERO_STATS = [
@@ -134,7 +134,7 @@ const OTC_CASES = [
     targetLinkLabel: 'Visit site',
     playStore: 'https://play.google.com/store/apps/details?id=com.coorworks.tnt.mobile',
     title: 'Integrated with Track/Trace Service',
-    pull: 'Request-less, just-in-time openings — pulled automatically when service starts.',
+    pull: 'Request-less, just-in-time openings — pulled automatically on service start.',
     image: 'uploads/OTC-Deployment-TNT.png',
     imageAlt: 'Track/Trace mobile app — service ticket with ATM open code',
     foundations: [
@@ -161,7 +161,7 @@ const OTC_CASES = [
     model: 'Direct API Access',
     target: 'Integrated into Field App',
     title: 'Direct Internal / External App Access',
-    pull: 'A clean REST surface for any modifiable internal or 3rd-party application.',
+    pull: 'A clean REST model for any internal or 3rd-party application.',
     image: 'uploads/cloud-otc.png',
     imageAlt: 'OTC Anywhere — direct API access via the cloud',
     foundations: [

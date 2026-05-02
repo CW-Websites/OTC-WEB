@@ -50,7 +50,7 @@ function OTCContact() {
             </div>
           </div>
           {status === 'success' ? (
-            <div className="contact__form contact__success" role="status" aria-live="polite">
+            <div className="contact__form contact__success reveal" role="status" aria-live="polite">
               <div className="contact__success-mark" aria-hidden="true">
                 <img src="uploads/check-circle-green.png" alt=""/>
               </div>
@@ -117,7 +117,7 @@ function OTCFooter() {
       <div className="container">
         <div className="tnt-footer__grid">
           <div className="tnt-footer__col">
-            <img src="uploads/OTC-Logo.png" alt="OTC Anywhere" style={{height: 32, width: 'auto', marginBottom: 18, filter: 'brightness(0) invert(1)'}}/>
+            <img src="uploads/OTC-Logo-v1-white.png" alt="OTC Anywhere" style={{height: 32, width: 'auto', marginBottom: 18}}/>
             <p style={{margin: 0, lineHeight: 1.6, opacity: 0.8, fontSize: 14, maxWidth: '34ch'}}>
               Automated ATM lock dispatching across DormaKaba, Stanley S&amp;G, and Intergard
               — secured, on-demand, enterprise managed.

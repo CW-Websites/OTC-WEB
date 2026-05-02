@@ -23,6 +23,20 @@ function OTCNav() {
         </a>
         <div className="nav__cta-wrap">
           <a href="#contact" className="nav__cta">Schedule Demo →</a>
+          <a
+            href="https://restnova.coorworks.com/cgi-bin/atm.cgi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav__launch"
+            aria-label="Open OTC Admin in a new tab"
+          >Admin</a>
+          <a
+            href="https://dashboard.otcanywhere.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav__launch"
+            aria-label="Open OTC Dashboard in a new tab"
+          >Dashboard</a>
         </div>
         <div className="nav__links">
           {OTC_NAV_LINKS.map(l => (

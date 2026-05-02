@@ -14,7 +14,7 @@ function OTCHero() {
           </div>
           <h1 className="hero__title">
             Automated<br/>
-            <span className="accent">ATM lock</span><br/>
+            <span className="accent">ATM Lock</span><br/>
             Dispatching.
           </h1>
           <p className="hero__sub">
