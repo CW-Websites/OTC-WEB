@@ -50,7 +50,7 @@ function OTCContact() {
             </div>
           </div>
           {status === 'success' ? (
-            <div className="contact__form contact__success reveal" role="status" aria-live="polite">
+            <div className="contact__form contact__success" role="status" aria-live="polite">
               <div className="contact__success-mark" aria-hidden="true">
                 <img src="uploads/check-circle-green.png" alt=""/>
               </div>
