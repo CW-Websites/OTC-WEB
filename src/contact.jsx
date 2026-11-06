@@ -12,7 +12,10 @@ function OTCContact() {
         body: data,
         headers: { Accept: 'application/json' },
       });
-      if (res.ok) { form.reset(); setStatus('success'); }
+      if (res.ok) {
+        form.reset(); setStatus('success');
+        if (window.otcTrackLead) window.otcTrackLead(otcPage(OTC_CURRENT_PAGE).path);
+      }
       else { setStatus('error'); }
     } catch { setStatus('error'); }
   };

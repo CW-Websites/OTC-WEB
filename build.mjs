@@ -43,6 +43,7 @@ const concatSources = () =>
 const clientEntry = `
 import React from 'react';
 import * as ReactDOMClient from 'react-dom/client';
+import './src/analytics.js';
 window.React = React;
 const ReactDOM = ReactDOMClient;
 ${concatSources()}
