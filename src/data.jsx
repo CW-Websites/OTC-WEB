@@ -1,6 +1,7 @@
 /* ——— OTC Anywhere — content from slides 1-8 ————————————————————————— */
 
 const OTC_NAV_LINKS = [
+  { id: 'locks',      label: 'Lock Systems' },
   { id: 'platform',   label: 'Platform'    },
   { id: 'hosting',    label: 'Hosting'     },
   { id: 'cases',      label: 'Deployments' },
@@ -11,7 +12,7 @@ const OTC_NAV_LINKS = [
 const OTC_SCOPE = ['SECURED', 'ON-DEMAND', 'ENTERPRISE MANAGED'];
 
 const OTC_HERO_BULLETS = [
-  { label: 'Coverage',   val: 'DormaKaba · Stanley S&G · Intergard' },
+  { label: 'Coverage',   val: 'dormakaba Cencon · Stanley S&G · Intergard' },
   { label: 'Automation', val: '95%+ of ATM / Vault Open · Close · Reassign' },
   { label: 'Operations', val: '24×7×365 protected & supported\n· No procedure changes' },
 ];
@@ -103,16 +104,15 @@ const OTC_CASES = [
     target: 'Rapid Field Adoption',
     title: 'OTC Companion App',
     pull: 'A standalone access app, engineered for field adoption — flip over to OTC to open the lock.',
-    image: 'uploads/OTC-Companion-App-padding.png',
+    image: '/uploads/OTC-Companion-App-padding.png',
     imageAlt: 'OTC Companion App — Ticket App / Field App alongside Open Lock screen',
     foundations: [
       'User-Proof Simplicity',
       'Session Length Controls (stay logged in)',
       'Lock-State-Driven Interface (only what you can do at this lock)',
-      '> 15 seconds to open',
+      '< 15 seconds to open',
       'Walk-Away Close Enforcement',
       'Request Volume Monitoring / Alerting',
-      'User-Proof Simplicity',
     ],
     targets: [
       'Field-friendly adoption',
@@ -135,7 +135,7 @@ const OTC_CASES = [
     playStore: 'https://play.google.com/store/apps/details?id=com.coorworks.tnt.mobile',
     title: 'Integrated with Track/Trace Service',
     pull: 'Request-less, just-in-time openings — pulled automatically on service start.',
-    image: 'uploads/OTC-Deployment-TNT.png',
+    image: '/uploads/OTC-Deployment-TNT.png',
     imageAlt: 'Track/Trace mobile app — service ticket with ATM open code',
     foundations: [
       'Request-less Automated Opening (Pulled on Service Start)',
@@ -162,7 +162,7 @@ const OTC_CASES = [
     target: 'Integrated into Field App',
     title: 'Direct Internal / External App Access',
     pull: 'A clean REST model for any internal or 3rd-party application.',
-    image: 'uploads/cloud-otc.png',
+    image: '/uploads/cloud-otc.png',
     imageAlt: 'OTC Anywhere — direct API access via the cloud',
     foundations: [
       'Straightforward REST API model',

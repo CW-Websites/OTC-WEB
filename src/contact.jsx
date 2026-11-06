@@ -52,7 +52,7 @@ function OTCContact() {
           {status === 'success' ? (
             <div className="contact__form contact__success" role="status" aria-live="polite">
               <div className="contact__success-mark" aria-hidden="true">
-                <img src="uploads/check-circle-green.png" alt=""/>
+                <img src="/uploads/check-circle-green.png" alt=""/>
               </div>
               <h3>Thanks — we got it.</h3>
               <p>
@@ -117,20 +117,29 @@ function OTCFooter() {
       <div className="container">
         <div className="tnt-footer__grid">
           <div className="tnt-footer__col">
-            <img src="uploads/OTC-Logo-v1-white.png" alt="OTC Anywhere" style={{height: 32, width: 'auto', marginBottom: 18}}/>
+            <img src="/uploads/OTC-Logo-v1-white.png" alt="OTC Anywhere" style={{height: 32, width: 'auto', marginBottom: 18}}/>
             <p style={{margin: 0, lineHeight: 1.6, opacity: 0.8, fontSize: 14, maxWidth: '34ch'}}>
-              Automated ATM lock dispatching across DormaKaba, Stanley S&amp;G, and Intergard
+              Automated ATM lock opening and dispatching across dormakaba Cencon, Stanley S&amp;G, and Intergard
               — secured, on-demand, enterprise managed.
             </p>
           </div>
           <div className="tnt-footer__col">
             <h4>Site</h4>
             <ul>
-              <li><a href="#platform">Platform</a></li>
-              <li><a href="#hosting">Hosting</a></li>
-              <li><a href="#cases">Deployments</a></li>
-              <li><a href="#benefits">Benefits</a></li>
+              <li><a href={otcAnchor('platform')}>Platform</a></li>
+              <li><a href={otcAnchor('hosting')}>Hosting</a></li>
+              <li><a href={otcAnchor('cases')}>Deployments</a></li>
+              <li><a href={otcAnchor('benefits')}>Benefits</a></li>
+              <li><a href={otcAnchor('faq')}>FAQ</a></li>
               <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div className="tnt-footer__col">
+            <h4>Lock Automation</h4>
+            <ul>
+              {OTC_LANDING_KEYS.map(k => (
+                <li key={k}><a href={otcPage(k).path}>{otcPage(k).crumb}</a></li>
+              ))}
             </ul>
           </div>
           <div className="tnt-footer__col">
@@ -138,7 +147,7 @@ function OTCFooter() {
             <ul>
               <li><a href="https://coorworks.com" target="_blank" rel="noopener">CoorWorks</a></li>
               <li><a href="https://coorworks.com#deliverables" target="_blank" rel="noopener">Track/Trace</a></li>
-              <li><a href="#top">OTC Anywhere</a></li>
+              <li><a href="/">OTC Anywhere</a></li>
               <li><a href="https://coorworks.com#deliverables" target="_blank" rel="noopener">ELISA</a></li>
               <li><a href="https://coorworks.com#deliverables" target="_blank" rel="noopener">Coordinate</a></li>
             </ul>
@@ -162,6 +171,11 @@ function OTCFooter() {
           <span>© {new Date().getFullYear()} CoorWorks, Inc. All rights reserved.</span>
           <span>OTC Anywhere · A CoorWorks Platform · Operating 24 × 7 × 365</span>
         </div>
+        <p className="tnt-footer__tm">
+          dormakaba, Cencon, S&amp;G, Sargent &amp; Greenleaf and Intergard are trademarks of their respective owners.
+          They are used here only to identify compatible lock systems; OTC Anywhere is not affiliated with or
+          endorsed by these companies.
+        </p>
       </div>
     </footer>
   );

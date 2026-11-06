@@ -2,9 +2,13 @@
 # Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  # Static site, no build step needed.
-  publish = "."
-  command = ""
+  # build.mjs pre-renders every page to real HTML (so search engines can read
+  # it) and writes the finished site to /dist, which Netlify publishes.
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
 
 # -----------------------------------------------------------------------------
 # Sensible defaults for a static marketing site.
@@ -22,13 +26,13 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Source files cached briefly so updates show quickly
+# The site script is versioned (?v=...) on every build, so it can be cached
 [[headers]]
-  for = "/src/*"
+  for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=300"
+    Cache-Control = "public, max-age=31536000, immutable"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Note: the old catch-all redirect (/* → /index.html) was removed. It made every
+# mistyped URL — and robots.txt / sitemap.xml — quietly return the homepage,
+# which search engines treat as duplicate content. Unknown URLs now get the
+# real 404 page (dist/404.html), which Netlify serves automatically.

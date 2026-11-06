@@ -26,23 +26,38 @@ function applyOTCTweaks(t) {
   });
 }
 
-function OTCApp() {
+// `page` says which page to show: 'home', a landing page ('cencon', 'sg',
+// 'intergard', 'lms') or 'notfound'. See src/pages.jsx for the list.
+function OTCApp({ page = 'home' }) {
   const [t, setTweak] = useTweaks(OTC_TWEAK_DEFAULTS);
   useOTCReveal();
   useEffectOTC(() => { applyOTCTweaks(t); }, [t]);
 
-  return (
-    <>
-      <OTCNav/>
-      <main>
+  let main;
+  if (page === 'home') {
+    main = (
+      <>
         <OTCHero/>
         <OTCStatsAndBrands/>
+        <OTCLockSystems/>
         <OTCPlatform/>
         <OTCHosting/>
         <OTCCases/>
         <OTCBenefits/>
+        <OTCFaq page="home"/>
         <OTCContact/>
-      </main>
+      </>
+    );
+  } else if (OTC_LANDINGS[page]) {
+    main = (<><OTCLanding page={page}/><OTCContact/></>);
+  } else {
+    main = <OTCNotFound/>;
+  }
+
+  return (
+    <>
+      <OTCNav/>
+      <main>{main}</main>
       <OTCFooter/>
 
       <TweaksPanel title="Tweaks">
@@ -56,5 +71,5 @@ function OTCApp() {
     </>
   );
 }
-
-ReactDOM.createRoot(document.getElementById('root')).render(<OTCApp/>);
+window.OTCApp = OTCApp;
+// The page is mounted by build.mjs (pre-rendered HTML + hydrate in the browser).

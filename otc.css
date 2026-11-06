@@ -664,3 +664,74 @@
   text-align: center;
   margin-bottom: 8px;
 }
+
+/* ===================================================================
+   SEO update (Nov 2026) — styles for new sections & landing pages.
+   Everything below is additive; nothing above was changed.
+   =================================================================== */
+
+/* Footer now has 5 columns (added "Lock Automation") */
+.otc-footer .tnt-footer__grid { grid-template-columns: 1.5fr 1fr 1.3fr 1fr 1.1fr; }
+@media (max-width: 980px) { .otc-footer .tnt-footer__grid { grid-template-columns: 1fr 1fr; } }
+.tnt-footer__tm {
+  position: relative; z-index: 2;
+  margin: 18px 0 0; max-width: 90ch;
+  font-size: 11px; line-height: 1.6; color: rgba(247,245,239,0.38);
+}
+
+/* Lock-system cards (home + "other lock systems" on landing pages) */
+.lockcards {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  position: relative; z-index: 2;
+}
+.lockcards:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 980px) { .lockcards, .lockcards:has(> :nth-child(3):last-child) { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .lockcards, .lockcards:has(> :nth-child(3):last-child) { grid-template-columns: 1fr; } }
+.lockcard {
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 24px 22px; border-radius: 12px;
+  background: var(--paper); border: 1px solid var(--line);
+  color: var(--ink); text-decoration: none;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.lockcard:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 14px 30px -22px rgba(11,30,63,.6); }
+.lockcard__name { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+.lockcard__blurb { font-size: 15px; line-height: 1.5; opacity: .78; flex: 1; }
+.lockcard__more {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* FAQ */
+.faq { max-width: 880px; border-top: 1px solid var(--line); }
+.faq__item { border-bottom: 1px solid var(--line); }
+.faq__q {
+  list-style: none; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  padding: 22px 0; font-size: clamp(17px, 1.4vw, 20px); font-weight: 600; letter-spacing: -0.01em;
+}
+.faq__q::-webkit-details-marker { display: none; }
+.faq__q::after { content: '+'; font-size: 24px; font-weight: 400; color: var(--accent); transition: transform .2s; }
+.faq__item[open] .faq__q::after { transform: rotate(45deg); }
+.faq__a { margin: 0 0 22px; max-width: 72ch; font-size: 16px; line-height: 1.6; opacity: .8; }
+
+/* Landing pages */
+.landing-hero { padding-bottom: clamp(48px, 7vw, 90px); }
+.crumbs {
+  display: flex; gap: 8px; align-items: center; margin-bottom: 18px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; opacity: .65;
+}
+.crumbs a { color: inherit; }
+.crumbs .sep { opacity: .5; }
+ul.benefits-grid { list-style: none; padding: 0; }
+.benefits-grid--auto { grid-auto-flow: row; grid-template-rows: none; position: relative; z-index: 2; }
+
+.steps {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+.step { padding: 28px 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.step__num { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; color: var(--accent); }
+.step__h { margin: 12px 0 10px; font-size: 21px; font-weight: 700; letter-spacing: -0.02em; }
+.step__p { margin: 0; font-size: 15.5px; line-height: 1.55; opacity: .8; }

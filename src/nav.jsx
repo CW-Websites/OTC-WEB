@@ -18,8 +18,8 @@ function OTCNav() {
   return (
     <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav__inner">
-        <a href="#top" className="nav__logo">
-          <img src="uploads/OTC-Logo.png" alt="OTC Anywhere"/>
+        <a href={OTC_CURRENT_PAGE === 'home' ? '#top' : '/'} className="nav__logo">
+          <img src="/uploads/OTC-Logo.png" alt="OTC Anywhere"/>
         </a>
         <div className="nav__cta-wrap">
           <a href="#contact" className="nav__cta">Schedule Demo →</a>
@@ -40,7 +40,7 @@ function OTCNav() {
         </div>
         <div className="nav__links">
           {OTC_NAV_LINKS.map(l => (
-            <a key={l.id} href={`#${l.id}`} className={`nav__link ${active===l.id?'active':''}`}>
+            <a key={l.id} href={otcAnchor(l.id)} className={`nav__link ${active===l.id?'active':''}`}>
               <span className="dot"></span>{l.label}
             </a>
           ))}

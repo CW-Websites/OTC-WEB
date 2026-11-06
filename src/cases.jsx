@@ -20,7 +20,7 @@ function OTCCases() {
                 <div className="case__model">
                   {c.model === 'Track/Trace Integration' ? (
                     <img
-                      src="uploads/logo-tnt.png"
+                      src="/uploads/logo-tnt.png"
                       alt="Track/Trace"
                       className="case__model-logo"
                     />
@@ -29,7 +29,7 @@ function OTCCases() {
                   )}
                 </div>
                 <div className="case__arrow" aria-hidden="true">
-                  <img src="uploads/arrow-outbound.png" alt=""/>
+                  <img src="/uploads/arrow-outbound.png" alt=""/>
                 </div>
                 <div className="case__target">
                   {c.target}
@@ -63,7 +63,7 @@ function OTCCases() {
                       rel="noopener noreferrer"
                       aria-label="Get the Track/Trace mobile app on Google Play"
                     >
-                      <img src="uploads/badge-google-play.png" alt="Get it on Google Play"/>
+                      <img src="/uploads/badge-google-play.png" alt="Get it on Google Play"/>
                     </a>
                   )}
                 </div>

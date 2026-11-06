@@ -15,7 +15,7 @@ function OTCHosting() {
         </div>
 
         <div className="hosting-image reveal">
-          <img src="uploads/otc-hosting.png" alt="OTC Anywhere hosting diagram — Internal Ops with no operational changes, CoorWorks Enterprise AWS hosted Lock System DB and Keybox with redundant secondary architecture, CoorWorks Support, and redundant Primary/Secondary OTC Anywhere services" />
+          <img src="/uploads/otc-hosting.png" alt="OTC Anywhere hosting diagram — Internal Ops with no operational changes, CoorWorks Enterprise AWS hosted Lock System DB and Keybox with redundant secondary architecture, CoorWorks Support, and redundant Primary/Secondary OTC Anywhere services" />
         </div>
       </div>
     </section>
