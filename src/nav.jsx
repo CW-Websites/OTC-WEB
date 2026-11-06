@@ -19,7 +19,7 @@ function OTCNav() {
     <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav__inner">
         <a href={OTC_CURRENT_PAGE === 'home' ? '#top' : '/'} className="nav__logo">
-          <img src="/uploads/OTC-Logo.png" alt="OTC Anywhere"/>
+          <img src={otcImg("/uploads/OTC-Logo.png")} alt="OTC Anywhere"/>
         </a>
         <div className="nav__cta-wrap">
           <a href="#contact" className="nav__cta">Schedule Demo →</a>

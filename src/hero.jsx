@@ -36,7 +36,7 @@ function OTCHero() {
               rel="noopener noreferrer"
               aria-label="Get the OTC Anywhere mobile app on Google Play"
             >
-              <img src="/uploads/badge-google-play.png" alt="Android app on Google Play" />
+              <img src={otcImg("/uploads/badge-google-play.png")} alt="Android app on Google Play" />
             </a>
             <a
               className="hero__store-badge"
@@ -45,7 +45,7 @@ function OTCHero() {
               rel="noopener noreferrer"
               aria-label="Download OTC Anywhere on the App Store"
             >
-              <img src="/uploads/badge-app-store.png" alt="Download on the App Store" />
+              <img src={otcImg("/uploads/badge-app-store.png")} alt="Download on the App Store" />
             </a>
           </div>
           <div className="hero__bullets">
@@ -59,10 +59,10 @@ function OTCHero() {
         </div>
         <div className="hero__visual" aria-label="OTC Anywhere — dashboard and companion app">
           <div className="hero__ph hero__ph--web" aria-label="OTC Anywhere web — lock activity dashboard">
-            <img src="/uploads/OTC-Hero-Web.png?v=3" alt="OTC Anywhere dashboard showing lock activity on map with audit log" />
+            <img src={otcImg("/uploads/OTC-Hero-Web.png")} fetchpriority="high" alt="OTC Anywhere dashboard showing lock activity on map with audit log" />
           </div>
           <div className="hero__ph hero__ph--app" aria-label="OTC Anywhere mobile app — Open Lock screen">
-            <img src="/uploads/OTC-Hero-App.png?v=2" alt="OTC Anywhere mobile app Open Lock screen" />
+            <img src={otcImg("/uploads/OTC-Hero-App.png")} alt="OTC Anywhere mobile app Open Lock screen" />
           </div>
         </div>
       </div>

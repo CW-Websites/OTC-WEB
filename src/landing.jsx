@@ -99,10 +99,10 @@ function OTCLanding({ page }) {
           </div>
           <div className="hero__visual" aria-label="OTC Anywhere — dashboard and companion app">
             <div className="hero__ph hero__ph--web">
-              <img src="/uploads/OTC-Hero-Web.png?v=3" alt={`OTC Anywhere dashboard — ${L.eyebrow} lock activity map and audit log`} />
+              <img src={otcImg("/uploads/OTC-Hero-Web.png")} fetchpriority="high" alt={`OTC Anywhere dashboard — ${L.eyebrow} lock activity map and audit log`} />
             </div>
             <div className="hero__ph hero__ph--app">
-              <img src="/uploads/OTC-Hero-App.png?v=2" alt="OTC Anywhere mobile app — Open Lock screen" />
+              <img src={otcImg("/uploads/OTC-Hero-App.png")} alt="OTC Anywhere mobile app — Open Lock screen" />
             </div>
           </div>
         </div>

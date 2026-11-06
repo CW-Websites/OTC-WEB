@@ -735,3 +735,22 @@ ul.benefits-grid { list-style: none; padding: 0; }
 .step__num { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; color: var(--accent); }
 .step__h { margin: 12px 0 10px; font-size: 21px; font-weight: 700; letter-spacing: -0.02em; }
 .step__p { margin: 0; font-size: 15.5px; line-height: 1.55; opacity: .8; }
+
+/* ——— Mobile layout fixes (Nov 2026) ————————————————————————————————
+   1. The OTC hero override above forced two columns at every width, so on
+      phones the device image sat on top of the headline. Stack them instead.
+   2. On phones the logo + three nav buttons didn't fit on one row; put the
+      buttons on their own row underneath the logo. */
+@media (max-width: 980px) {
+  .hero--otc .hero__inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero--otc .hero__visual { justify-self: stretch; max-width: 640px; min-height: 0; }
+}
+@media (max-width: 600px) {
+  .nav__inner { grid-template-columns: 1fr; row-gap: 10px; padding-top: 12px; padding-bottom: 10px; }
+  .nav__logo { grid-row: 1; }
+  .nav__logo img { height: 28px; }
+  .nav__cta-wrap { grid-column: 1; grid-row: 2; flex-wrap: nowrap; gap: 6px; }
+  .nav__cta, .nav__launch { font-size: 11px; padding: 7px 11px; }
+  .hero { padding-top: 120px; min-height: 0; }
+  .hero--otc .hero__visual { aspect-ratio: 5 / 4; }
+}

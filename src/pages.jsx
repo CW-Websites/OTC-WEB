@@ -13,6 +13,12 @@
 let OTC_CURRENT_PAGE = 'home';
 const otcAnchor = (id) => (OTC_CURRENT_PAGE === 'home' ? `#${id}` : `/#${id}`);
 
+// Images: build.mjs makes a smaller WebP copy of every PNG in /uploads, with a
+// fingerprint in the name (e.g. otc-platform.3k9x1a.webp) so browsers always
+// fetch the new version when you replace a PNG. Keep editing the PNGs; use
+// otcImg('/uploads/name.png') in code and the build swaps in the WebP.
+const otcImg = (p) => ((typeof window !== 'undefined' && window.__OTC_IMG__) || {})[p] || p;
+
 const OTC_PAGES = [
   {
     key: 'home',
@@ -251,5 +257,5 @@ const OTC_LANDINGS = {
 };
 
 Object.assign(window, {
-  OTC_PAGES, OTC_FAQS, OTC_LANDINGS, OTC_LANDING_KEYS, otcPage, otcAnchor,
+  OTC_PAGES, OTC_FAQS, OTC_LANDINGS, OTC_LANDING_KEYS, otcPage, otcAnchor, otcImg,
 });

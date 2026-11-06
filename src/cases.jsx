@@ -20,7 +20,7 @@ function OTCCases() {
                 <div className="case__model">
                   {c.model === 'Track/Trace Integration' ? (
                     <img
-                      src="/uploads/logo-tnt.png"
+                      src={otcImg("/uploads/logo-tnt.png")} loading="lazy" decoding="async"
                       alt="Track/Trace"
                       className="case__model-logo"
                     />
@@ -29,7 +29,7 @@ function OTCCases() {
                   )}
                 </div>
                 <div className="case__arrow" aria-hidden="true">
-                  <img src="/uploads/arrow-outbound.png" alt=""/>
+                  <img src={otcImg("/uploads/arrow-outbound.png")} loading="lazy" decoding="async" alt=""/>
                 </div>
                 <div className="case__target">
                   {c.target}
@@ -63,7 +63,7 @@ function OTCCases() {
                       rel="noopener noreferrer"
                       aria-label="Get the Track/Trace mobile app on Google Play"
                     >
-                      <img src="/uploads/badge-google-play.png" alt="Get it on Google Play"/>
+                      <img src={otcImg("/uploads/badge-google-play.png")} loading="lazy" decoding="async" alt="Get it on Google Play"/>
                     </a>
                   )}
                 </div>
@@ -76,11 +76,11 @@ function OTCCases() {
                 <div className={"case__media" + (c.image2 ? " case__media--stack" : "")}>
                   {c.image2 ? (
                     <>
-                      <img className="case__media-back" src={c.image2} alt={c.imageAlt}/>
-                      <img className="case__media-front" src={c.image} alt={c.imageAlt}/>
+                      <img className="case__media-back" src={otcImg(c.image2)} loading="lazy" decoding="async" alt={c.imageAlt}/>
+                      <img className="case__media-front" src={otcImg(c.image)} loading="lazy" decoding="async" alt={c.imageAlt}/>
                     </>
                   ) : (
-                    <img src={c.image} alt={c.imageAlt}/>
+                    <img src={otcImg(c.image)} loading="lazy" decoding="async" alt={c.imageAlt}/>
                   )}
                 </div>
               </div>

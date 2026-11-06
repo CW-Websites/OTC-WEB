@@ -19,6 +19,18 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    # Browsers must use HTTPS for this site for the next year.
+    # (Deliberately not "includeSubDomains" so dashboard/other subdomains are unaffected.)
+    Strict-Transport-Security = "max-age=31536000"
+    # Turn off device features this marketing site never uses.
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    # Content Security Policy: the allow-list of where the page may load things from.
+    #   scripts → only this site (no inline scripts)
+    #   styles/fonts → this site + Google Fonts
+    #   form submissions → this site + Formspree (the contact form)
+    # If you add a new outside service (analytics, chat widget…), it must be added here.
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
 # Cache uploads aggressively (they rarely change)
 [[headers]]

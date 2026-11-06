@@ -10,6 +10,8 @@
 // Netlify runs:  npm run build  (see netlify.toml) and publishes /dist.
 
 import { build } from 'esbuild';
+import sharp from 'sharp';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
@@ -21,7 +23,6 @@ const SITE_URL = 'https://otcanywhere.com';
 // Source files, in load order. Each file defines components on `window`,
 // exactly as before — later files use what earlier files define.
 const SOURCES = [
-  'tweaks-panel.jsx',
   'src/data.jsx',
   'src/pages.jsx',
   'src/nav.jsx',
@@ -45,8 +46,12 @@ import * as ReactDOMClient from 'react-dom/client';
 window.React = React;
 const ReactDOM = ReactDOMClient;
 ${concatSources()}
+// Page data is a JSON block (not an inline script) so the security policy
+// in netlify.toml can forbid inline scripts entirely.
+const otcData = JSON.parse(document.getElementById('otc-data').textContent);
+window.__OTC_IMG__ = otcData.img;
 const rootEl = document.getElementById('root');
-OTC_CURRENT_PAGE = window.__OTC_PAGE__ || 'home';
+OTC_CURRENT_PAGE = otcData.page || 'home';
 ReactDOMClient.hydrateRoot(rootEl, <OTCApp page={OTC_CURRENT_PAGE}/>);
 `;
 
@@ -95,6 +100,29 @@ await build({
   packages: 'external', // use react/react-dom straight from node_modules
 });
 const server = await import(pathToFileURL(serverFile).href + '?t=' + Date.now());
+
+// ---------------------------------------------------------------------------
+// Images: copy /uploads, and make a WebP version of every PNG (typically
+// 60–90% smaller). The WebP name carries a fingerprint of the PNG's contents,
+// so replacing a PNG automatically produces a new URL and browsers can't show
+// a stale cached copy. The map (PNG path → WebP path) is given to the pages.
+// ---------------------------------------------------------------------------
+fs.cpSync(path.join(ROOT, 'uploads'), path.join(DIST, 'uploads'), { recursive: true });
+const imageMap = {};
+let pngBytes = 0, webpBytes = 0;
+for (const name of fs.readdirSync(path.join(ROOT, 'uploads'))) {
+  if (!/\.png$/i.test(name)) continue;
+  const src = path.join(ROOT, 'uploads', name);
+  const buf = fs.readFileSync(src);
+  const fp = crypto.createHash('sha1').update(buf).digest('hex').slice(0, 8);
+  const outName = name.replace(/\.png$/i, `.${fp}.webp`);
+  const webp = await sharp(buf).webp({ quality: 82, effort: 5 }).toBuffer();
+  if (webp.length >= buf.length) continue; // keep the PNG if WebP isn't smaller
+  fs.writeFileSync(path.join(DIST, 'uploads', outName), webp);
+  imageMap[`/uploads/${name}`] = `/uploads/${outName}`;
+  pngBytes += buf.length; webpBytes += webp.length;
+}
+globalThis.__OTC_IMG__ = imageMap; // used by otcImg() while pre-rendering
 
 // Cache-busting: a short fingerprint of the JS + CSS so browsers fetch new
 // versions after each deploy instead of using a stale copy.
@@ -194,7 +222,7 @@ function writePage(page, outRel, extraHead = '') {
     .replace(/<!--\n[\s\S]*?-->\n/, '') // drop the explanatory note in the template
     .replace('<!--HEAD-->', headFor(page) + extraHead)
     .replace(/\{\{VERSION\}\}/g, version)
-    .replace('<!--PAGE-->', `<script>window.__OTC_PAGE__=${JSON.stringify(page.key)};</script>`)
+    .replace('<!--PAGE-->', `<script type="application/json" id="otc-data">${JSON.stringify({ page: page.key, img: imageMap }).replace(/</g, '\\u003c')}</script>`)
     .replace('<!--APP-->', server.render(page.key));
   const out = path.join(DIST, outRel);
   fs.mkdirSync(path.dirname(out), { recursive: true });
@@ -214,8 +242,6 @@ writePage(server.pages.find(p => p.key === 'notfound'), '404.html');
 // Static files: CSS, images, robots.txt, sitemap.xml
 // ---------------------------------------------------------------------------
 for (const f of cssFiles) fs.copyFileSync(path.join(ROOT, f), path.join(DIST, f));
-fs.cpSync(path.join(ROOT, 'uploads'), path.join(DIST, 'uploads'), { recursive: true });
-
 fs.writeFileSync(path.join(DIST, 'robots.txt'),
 `User-agent: *
 Allow: /
@@ -234,5 +260,6 @@ ${indexable.map(p => `  <url><loc>${SITE_URL}${p.path}</loc><lastmod>${today}</l
 
 const kb = (n) => (n / 1024).toFixed(0) + ' KB';
 console.log('  script  assets/site.js', kb(fs.statSync(path.join(DIST, 'assets/site.js')).size));
+console.log(`  images  ${Object.keys(imageMap).length} PNG → WebP, ${kb(pngBytes)} → ${kb(webpBytes)}`);
 console.log('  robots.txt, sitemap.xml (' + indexable.length + ' URLs), 404.html');
 console.log('Done → dist/');

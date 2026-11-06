@@ -52,7 +52,7 @@ function OTCContact() {
           {status === 'success' ? (
             <div className="contact__form contact__success" role="status" aria-live="polite">
               <div className="contact__success-mark" aria-hidden="true">
-                <img src="/uploads/check-circle-green.png" alt=""/>
+                <img src={otcImg("/uploads/check-circle-green.png")} alt=""/>
               </div>
               <h3>Thanks — we got it.</h3>
               <p>
@@ -86,6 +86,10 @@ function OTCContact() {
                 <textarea id="cf-message" name="message" placeholder="Automation · availability · audit · access control · subcontractor reach"></textarea>
               </div>
               <input type="text" name="_gotcha" style={{display:'none'}} tabIndex="-1" autoComplete="off"/>
+              {/* Lead source: tells you which page a demo request came from.
+                  _subject sets the email subject line Formspree sends you. */}
+              <input type="hidden" name="source_page" value={otcPage(OTC_CURRENT_PAGE).crumb + ' (' + otcPage(OTC_CURRENT_PAGE).path + ')'}/>
+              <input type="hidden" name="_subject" value={'OTC demo request — ' + otcPage(OTC_CURRENT_PAGE).crumb}/>
               {status === 'error' && (
                 <div className="contact__error" role="alert">
                   Something went wrong sending your message. Please email <a href="mailto:Support@Coorworks.com">Support@Coorworks.com</a> directly.
@@ -117,7 +121,7 @@ function OTCFooter() {
       <div className="container">
         <div className="tnt-footer__grid">
           <div className="tnt-footer__col">
-            <img src="/uploads/OTC-Logo-v1-white.png" alt="OTC Anywhere" style={{height: 32, width: 'auto', marginBottom: 18}}/>
+            <img src={otcImg("/uploads/OTC-Logo-v1-white.png")} loading="lazy" decoding="async" alt="OTC Anywhere" style={{height: 32, width: 'auto', marginBottom: 18}}/>
             <p style={{margin: 0, lineHeight: 1.6, opacity: 0.8, fontSize: 14, maxWidth: '34ch'}}>
               Automated ATM lock opening and dispatching across dormakaba Cencon, Stanley S&amp;G, and Intergard
               — secured, on-demand, enterprise managed.
@@ -163,7 +167,7 @@ function OTCFooter() {
           </div>
         </div>
 
-        <a href="https://dashboard.otcanywhere.com/login" target="_blank" rel="noopener" className="tnt-footer__wordmark" aria-label="CoorWorks">
+        <a href="https://coorworks.com" target="_blank" rel="noopener" className="tnt-footer__wordmark" aria-label="CoorWorks website">
           CoorWorks<span className="accent">.</span>
         </a>
 

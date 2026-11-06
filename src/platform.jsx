@@ -16,7 +16,7 @@ function OTCPlatform() {
         </div>
 
         <div className="platform-image reveal">
-          <img src="/uploads/otc-platform.png?v=2" alt="OTC Anywhere platform diagram — Loader/Technician with user permission controls, channels (Web, IVR, SMS, mobile), Primary and Secondary OTC services, API access, and lock systems across Enterprise Hosted, 3rd Party, and On-Premise deployments" />
+          <img src={otcImg("/uploads/otc-platform.png")} loading="lazy" decoding="async" alt="OTC Anywhere platform diagram — Loader/Technician with user permission controls, channels (Web, IVR, SMS, mobile), Primary and Secondary OTC services, API access, and lock systems across Enterprise Hosted, 3rd Party, and On-Premise deployments" />
         </div>
       </div>
     </section>
