@@ -153,7 +153,7 @@ function OTCFooter() {
             <h4>CoorWorks Products</h4>
             <ul>
               <li><a href="https://coorworks.com" target="_blank" rel="noopener">CoorWorks</a></li>
-              <li><a href="https://coorworks.com#deliverables" target="_blank" rel="noopener">Track/Trace</a></li>
+              <li><a href="https://trackandtracecash.com/" target="_blank" rel="noopener">Track/Trace</a></li>
               <li><a href="/">OTC Anywhere</a></li>
               <li><a href="https://coorworks.com#deliverables" target="_blank" rel="noopener">ELISA</a></li>
               <li><a href="https://coorworks.com#deliverables" target="_blank" rel="noopener">Coordinate</a></li>
